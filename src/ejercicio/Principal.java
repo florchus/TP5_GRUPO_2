@@ -16,17 +16,19 @@ import java.awt.event.ActionEvent;
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
-	//private static DefaultListModel<Pelicula> dlModel;
-	dlModel = new defaultListModel<Película>();
+	private static DefaultListModel<Pelicula> dlModel;
+	
 	
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					dlModel = new DefaultListModel<Pelicula>();
 					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -58,6 +60,7 @@ public class Principal extends JFrame {
 				contentPane.add(panel);
 				contentPane.repaint();
 				contentPane.revalidate();
+				
 			}
 		});
 		mnPeliculas.add(mntmAgregar);
