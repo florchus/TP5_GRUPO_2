@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import javax.swing.JComboBox;
 
 public class PanelAgregarPelicula extends JPanel {
 	private JTextField txtNombre;
@@ -18,6 +19,8 @@ public class PanelAgregarPelicula extends JPanel {
 	private JLabel lblNombre;
 	private JLabel lblGenero;
 	private DefaultListModel<Pelicula> dlModel;
+	private JComboBox<Categoria> cbGenero;
+	private JButton btnAceptar;
 	
 	public void setDlModel(DefaultListModel<Pelicula> dlModel) {
 		this.dlModel = dlModel;
@@ -30,7 +33,7 @@ public class PanelAgregarPelicula extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -76,6 +79,26 @@ public class PanelAgregarPelicula extends JPanel {
 		gbc_lblGenero.gridx = 3;
 		gbc_lblGenero.gridy = 6;
 		add(lblGenero, gbc_lblGenero);
+		
+		cbGenero = new JComboBox<Categoria>();
+		cbGenero.setToolTipText("Seleccione un g\u00E9nero");
+		GridBagConstraints gbc_cbGenero = new GridBagConstraints();
+		gbc_cbGenero.insets = new Insets(0, 0, 5, 5);
+		gbc_cbGenero.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cbGenero.gridx = 6;
+		gbc_cbGenero.gridy = 6;
+		cbGenero.addItem(new Categoria(0, "Seleccione un género"));
+		cbGenero.addItem(new Categoria(1, "Terror"));
+		cbGenero.addItem(new Categoria(2, "Accion"));
+		cbGenero.addItem(new Categoria(3, "Suspenso"));
+		cbGenero.addItem(new Categoria(4, "Romántica"));
+		add(cbGenero, gbc_cbGenero);
+		
+		btnAceptar = new JButton("Aceptar");
+		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
+		gbc_btnAceptar.gridx = 7;
+		gbc_btnAceptar.gridy = 8;
+		add(btnAceptar, gbc_btnAceptar);
 
 	}
 
