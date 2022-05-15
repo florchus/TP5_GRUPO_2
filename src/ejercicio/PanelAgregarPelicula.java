@@ -3,6 +3,7 @@ package ejercicio;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
@@ -10,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 public class PanelAgregarPelicula extends JPanel {
@@ -37,6 +40,7 @@ public class PanelAgregarPelicula extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
+
 		lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GridBagConstraints gbc_lblId = new GridBagConstraints();
@@ -98,8 +102,33 @@ public class PanelAgregarPelicula extends JPanel {
 		GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
 		gbc_btnAceptar.gridx = 7;
 		gbc_btnAceptar.gridy = 8;
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+
+				if (cbGenero.getSelectedIndex() != 0 && !txtNombre.getText().isEmpty()) {
+					pelicula.setNombre(txtNombre.getText());
+					pelicula.setGenero((Categoria)cbGenero.getSelectedItem());
+					dlModel.addElement(pelicula);
+					JOptionPane.showMessageDialog(null, "Película añadida con éxito.");
+				}
+				else {
+					String msjError = new String();
+					if (cbGenero.getSelectedIndex() == 0) {
+						msjError = "* Debe seleccionar un género de película. ";
+					}
+					if (txtNombre.getText().isEmpty()) {
+						msjError += "\n* Debe ingresar un nombre de película.";
+					}
+					JOptionPane.showMessageDialog(null, msjError);
+				}
+
+				
+			}
+
+		});
 		add(btnAceptar, gbc_btnAceptar);
-
 	}
-
+	public void setDlmListaPeliculas(DefaultListModel<Pelicula>dlModel ) {
+		this.dlModel = dlModel;
+	}
 }

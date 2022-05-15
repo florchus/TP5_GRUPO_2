@@ -39,6 +39,14 @@ public class Pelicula {
 		return id;
 	}
 
+	public static int getCont() {
+		return cont;
+	}
+
+	public static void setCont(int cont) {
+		Pelicula.cont = cont;
+	}
+
 	@Override
 	public String toString() {
 		return id + " - " + nombre + " - " + genero.getNombre();
