@@ -3,17 +3,21 @@ package ejercicio;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
-
+	private static DefaultListModel<Pelicula> dlModel;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -44,6 +48,16 @@ public class Principal extends JFrame {
 		menuBar.add(mnPeliculas);
 		
 		JMenuItem mntmAgregar = new JMenuItem("Agregar");
+		mntmAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.removeAll();
+				PanelAgregarPelicula panel = new PanelAgregarPelicula();
+				panel.setDlModel(dlModel);
+				contentPane.add(panel);
+				contentPane.repaint();
+				contentPane.revalidate();
+			}
+		});
 		mnPeliculas.add(mntmAgregar);
 		
 		JMenuItem mntmListar = new JMenuItem("Listar");

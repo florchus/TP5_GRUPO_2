@@ -5,12 +5,16 @@ public class Pelicula {
 	private String nombre;
 	private Categoria genero;
 	
+	private static int cont = 0;
+	
 	public Pelicula() {
-
+		cont++;
+		this.id = cont;
 	}
 	
 	public Pelicula(int id, String nombre, Categoria genero) {
-		this.id = id;
+		cont++;
+		this.id = cont;
 		this.nombre = nombre;
 		this.genero = genero;
 	}
