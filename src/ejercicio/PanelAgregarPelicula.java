@@ -105,7 +105,7 @@ public class PanelAgregarPelicula extends JPanel {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 
-				if (cbGenero.getSelectedIndex() != 0 && !txtNombre.getText().isEmpty()) {
+				if (cbGenero.getSelectedIndex() != 0 && !txtNombre.getText().isEmpty() && !(txtNombre.getText()).startsWith(" ")) {
 					pelicula.setNombre(txtNombre.getText());
 					pelicula.setGenero((Categoria)cbGenero.getSelectedItem());
 					dlModel.addElement(pelicula);
@@ -119,10 +119,14 @@ public class PanelAgregarPelicula extends JPanel {
 					if (txtNombre.getText().isEmpty()) {
 						msjError += "\n* Debe ingresar un nombre de película.";
 					}
+					if ((txtNombre.getText()).startsWith(" ")) {
+						msjError += "\n* Debe ingresar un nombre de película.";
+					}
 					JOptionPane.showMessageDialog(null, msjError);
 				}
 
-				
+				txtNombre.setText("");
+				cbGenero.setSelectedIndex(0);
 			}
 
 		});

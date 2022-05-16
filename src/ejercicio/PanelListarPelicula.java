@@ -2,10 +2,7 @@ package ejercicio;
 
 import javax.swing.JPanel;
 import javax.swing.ListModel;
-
-import Ejercicio.Peliculas;
 import javafx.collections.transformation.SortedList;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
