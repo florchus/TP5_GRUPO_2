@@ -24,6 +24,7 @@ public class PanelAgregarPelicula extends JPanel {
 	private DefaultListModel<Pelicula> dlModel;
 	private JComboBox<Categoria> cbGenero;
 	private JButton btnAceptar;
+	private static int cont=1;
 	
 	public void setDlModel(DefaultListModel<Pelicula> dlModel) {
 		this.dlModel = dlModel;
@@ -55,8 +56,9 @@ public class PanelAgregarPelicula extends JPanel {
 		gbc_lblIdAuto.insets = new Insets(0, 0, 5, 5);
 		gbc_lblIdAuto.gridx = 6;
 		gbc_lblIdAuto.gridy = 2;
-		Pelicula pelicula = new Pelicula();
-		lblIdAuto.setText(Integer.toString(pelicula.getId()));
+		
+		//lblIdAuto.setText(Integer.toString(pelicula.getId()));
+		lblIdAuto.setText(String.valueOf(cont));
 		add(lblIdAuto, gbc_lblIdAuto);
 		
 		lblNombre = new JLabel("Nombre");
@@ -106,10 +108,12 @@ public class PanelAgregarPelicula extends JPanel {
 			public void actionPerformed(ActionEvent e) {		
 
 				if (cbGenero.getSelectedIndex() != 0 && !txtNombre.getText().isEmpty() && !(txtNombre.getText()).startsWith(" ")) {
+					Pelicula pelicula = new Pelicula();
 					pelicula.setNombre(txtNombre.getText());
 					pelicula.setGenero((Categoria)cbGenero.getSelectedItem());
 					dlModel.addElement(pelicula);
 					JOptionPane.showMessageDialog(null, "Película añadida con éxito.");
+					cont++;
 				}
 				else {
 					String msjError = new String();
@@ -127,6 +131,7 @@ public class PanelAgregarPelicula extends JPanel {
 
 				txtNombre.setText("");
 				cbGenero.setSelectedIndex(0);
+				lblIdAuto.setText(String.valueOf(cont));
 			}
 
 		});
